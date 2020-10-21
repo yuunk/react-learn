@@ -1,0 +1,30 @@
+.InputTweet {
+  padding: 80px 0;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 auto;
+
+  @at-root {
+    .InputTweet__textArea {
+      box-sizing: border-box;
+      width: 90%;
+      max-width: 500px;
+      height: 250px;
+      font-size: 25px;
+      padding: 5px 10px;
+      background-color: rgb(118, 118, 118);
+      color: #fff;
+    }
+
+    .InputTweet__button {
+      border: 1px solid #fff;
+      margin-top: 30px;
+      color: #fff;
+      width: 250px;
+      padding: 10px;
+      font-size: 20px;
+    }
+  }
+}

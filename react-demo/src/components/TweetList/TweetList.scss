@@ -1,0 +1,8 @@
+@import '../../style/var.scss';
+
+.TweetList {
+  @include inner;
+  li {
+    border: 1px solid #fff;
+  }
+}

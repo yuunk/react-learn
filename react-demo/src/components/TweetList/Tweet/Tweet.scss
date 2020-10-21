@@ -1,0 +1,9 @@
+.Tweet {
+  display: flex;
+
+  @at-root {
+    .Tweet__containerLeft {
+      padding-left: 10px;
+    }
+  }
+}
