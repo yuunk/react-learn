@@ -1,48 +1,28 @@
 import React, { Component } from 'react';
-// import './Home.scss';
+import { Link } from 'react-router-dom';
 
-import InputTweet from '../../components/InputTweet/InputTweet';
-import TweetList from '../../components/TweetList/TweetList';
+import './Home.scss';
+
+// import InputTweet from '../../components/InputTweet/InputTweet';
+// import TweetList from '../../components/TweetList/TweetList';
 
 class Home extends Component {
 
-    state = {
-        tweet: {
-            add: false,
-            user: '',
-            text: ''
-        }
-    }
-
-    addTweet = (tweetText) => {
-        console.log(tweetText);
-        this.setState({
-            tweet: {
-                add: true,
-                user: 'testUser',
-                text: tweetText
-            }
-        });
-    }
-
-    resetAdd = () => {
-        this.setState({
-            tweet: {
-                add: false,
-                user: '',
-                text: ''
-            }
-        });
-    }
-
-    render() {
-        return (
-            <div className="PageHome">
-                <InputTweet click={(tweetText) => this.addTweet(tweetText)} />
-                <TweetList addTweet={this.state.tweet} resetAdd={this.resetAdd} />
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div className="Home">
+        <div className="Home__container">
+          <h1>nyanstagram</h1>
+          <p>登録して友達の写真や動画をチェックしよう</p>
+          <button className="Home__loginBtn">ログイン</button>
+          <p>または</p>
+          <Link
+            to="/signup"
+          >メールドレスで登録</Link>
+        </div>
+      </div>
+    )
+  }
 
 }
 
