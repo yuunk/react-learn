@@ -1,0 +1,3 @@
+[submodule "instagram-clone-api"]
+	path = instagram-clone-api
+	url = git@github.com:yuunk/instagram-clone-api.git
