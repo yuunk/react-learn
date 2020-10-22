@@ -1,24 +1,14 @@
 import React, { Component } from 'react';
-import './TweetList.scss';
+import axios from 'axios';
+
 import Tweet from './Tweet/Tweet';
+
+import './TweetList.scss';
 
 class TweetList extends Component {
 
     state = {
-        tweetList: [
-            {
-                user: 'user1',
-                text: 'sample sample' 
-            },
-            {
-                user: 'user2',
-                text: 'sample sample sample'
-            },
-            {
-                user: 'user3',
-                text: 'sample sample sample'
-            }
-        ],
+        tweetList: [],
     }
 
     static getDerivedStateFromProps(props, state) {
@@ -35,6 +25,18 @@ class TweetList extends Component {
         }
     }
 
+    componentDidMount = () => {
+        console.log('didmout');
+        axios
+            .get('/api/tweet')
+            .then(response => {
+                this.setState({ tweetList: response.data });
+            })
+            .catch(() => {
+                console.log('axios faild');
+            });
+    }
+
     render() {
 
         console.log('update id = ' +  this.state.update);
@@ -45,7 +47,8 @@ class TweetList extends Component {
                     return (
                         <Tweet
                             key={index}
-                            user={tweet.user}
+                            user={tweet.user_id}
+                            title={tweet.title}
                             text={tweet.text}
                         />
                     )

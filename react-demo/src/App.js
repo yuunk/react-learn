@@ -3,7 +3,6 @@ import './App.scss';
 
 import InputTweet from './components/InputTweet/InputTweet';
 import TweetList from './components/TweetList/TweetList';
-import HttpTest from './components/HttpTest/HttpTest';
 
 class App extends Component {
 
@@ -41,7 +40,6 @@ class App extends Component {
       <div>
         <InputTweet click={(tweetText) => this.addTweet(tweetText)} />
         <TweetList addTweet={this.state.tweet} resetAdd={this.resetAdd} />
-        <HttpTest />
       </div>
     )
   }

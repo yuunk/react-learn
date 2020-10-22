@@ -19,4 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => ['api']], function () {
     Route::get('/hoge', 'Api\hogeController@index');
+    Route::get('/tweet', 'Api\TweetController@index');
 });

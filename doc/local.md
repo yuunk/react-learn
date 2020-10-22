@@ -30,3 +30,10 @@ laravel
 ```
 composer create-project --prefer-dist laravel/laravel tweet-demo "6.*"
 ```
+
+# db
+
+* user1
+* passWORD12@
+
+db_name: tweet_demo

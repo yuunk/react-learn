@@ -9,6 +9,7 @@ class Tweet extends Component {
                 <div className="Tweet__icon">icon</div>
                 <div className="Tweet__containerLeft">
                     <div>{this.props.user}</div>
+                    <div>{this.props.title}</div>
                     <div>{this.props.text}</div>
                     <button>♡</button>
                 </div>
