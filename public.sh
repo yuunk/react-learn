@@ -1,0 +1,1 @@
+cp -r static/build/* server/public/

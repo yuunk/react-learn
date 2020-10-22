@@ -46,7 +46,7 @@ Vagrant.configure("2") do |config|
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
   # config.vm.synced_folder "./linxyz", "/var/www/html"
-  config.vm.synced_folder "./tweet-demo", "/var/www/html", id: "vagrant-root", :nfs => false,
+  config.vm.synced_folder "./server", "/var/www/html", id: "vagrant-root", :nfs => false,
   :owner => "vagrant",
   :group => "vagrant",
   :mount_options => ["dmode=777,fmode=777"]
