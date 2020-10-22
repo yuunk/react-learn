@@ -3,3 +3,10 @@
   max-width: 500px;
   margin: 0 auto;
 }
+
+@mixin pageTtl {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  padding: 30px;
+}

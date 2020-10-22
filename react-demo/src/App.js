@@ -1,46 +1,30 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
 import './App.scss';
 
-import InputTweet from './components/InputTweet/InputTweet';
-import TweetList from './components/TweetList/TweetList';
+import Header from './components/Header/Header';
+
+// page
+import Home from './page/Home/Home';
+import Signup from './page/Signup/Signup';
 
 class App extends Component {
 
-  state = {
-    tweet: {
-      add: false,
-      user: '',
-      text: ''
-    }
-  }
 
-  addTweet = (tweetText) => {
-    console.log(tweetText);
-    this.setState({
-      tweet: {
-        add: true,
-        user: 'testUser',
-        text: tweetText
-      }
-    });
-  }
-
-  resetAdd = () => {
-    this.setState({
-      tweet: {
-        add: false,
-        user: '',
-        text: ''
-      }
-    });
-  }
 
   render() {
     return (
-      <div>
-        <InputTweet click={(tweetText) => this.addTweet(tweetText)} />
-        <TweetList addTweet={this.state.tweet} resetAdd={this.resetAdd} />
-      </div>
+
+      <BrowserRouter>
+        <div>
+          <Header />
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route path='/signup' component={Signup} />
+          </Switch>
+        </div>
+      </BrowserRouter>
     )
   }
 

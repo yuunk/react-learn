@@ -7,55 +7,60 @@ import './TweetList.scss';
 
 class TweetList extends Component {
 
-    state = {
-        tweetList: [],
+  state = {
+    tweetList: [],
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.addTweet.add) {
+      const tweetList = [...state.tweetList];
+      tweetList.push({ user: props.addTweet.user, text: props.addTweet.text });
+      props.resetAdd();
+      console.log('add');
+      return {
+        tweetList: tweetList
+      };
+    } else {
+      return state;
     }
+  }
 
-    static getDerivedStateFromProps(props, state) {
-        if (props.addTweet.add) {
-            const tweetList = [...state.tweetList];
-            tweetList.push({ user: props.addTweet.user, text: props.addTweet.text });
-            props.resetAdd();
-            console.log('add');
-            return {
-                tweetList: tweetList
-            };
-        } else {
-            return state;
-        }
-    }
+  fetchTweetList() {
+    axios
+      .get('/api/tweet')
+      .then(response => {
+        this.setState({ tweetList: response.data });
+      })
+      .catch(() => {
+        console.log('axios faild');
+      });
+  }
 
-    componentDidMount = () => {
-        console.log('didmout');
-        axios
-            .get('/api/tweet')
-            .then(response => {
-                this.setState({ tweetList: response.data });
-            })
-            .catch(() => {
-                console.log('axios faild');
-            });
-    }
+  componentDidMount = () => {
+    console.log('didmout');
+    this.fetchTweetList();
+  }
 
-    render() {
+  
+  render() {
 
-        console.log('update id = ' +  this.state.update);
+    console.log('update id = ' + this.state.update);
 
-        return (
-            <ul className="TweetList">
-                {this.state.tweetList.map((tweet, index) => {
-                    return (
-                        <Tweet
-                            key={index}
-                            user={tweet.user_id}
-                            title={tweet.title}
-                            text={tweet.text}
-                        />
-                    )
-                })}
-            </ul>
-        )
-    }
+    return (
+      <ul className="TweetList">
+        {this.state.tweetList.map((tweet, index) => {
+          return (
+            <Tweet
+              key={index}
+              user={tweet.user_id}
+              title={tweet.title}
+              text={tweet.text}
+            />
+          )
+        })}
+      </ul>
+    )
+  }
 
 }
 

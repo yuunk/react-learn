@@ -1,0 +1,11 @@
+@import "../../style/var.scss";
+
+.Signup {
+  @include inner;
+
+  @at-root {
+    .Signup__ttl {
+      @include pageTtl;
+    }
+  }
+}
