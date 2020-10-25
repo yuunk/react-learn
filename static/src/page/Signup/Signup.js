@@ -9,7 +9,7 @@ class Signup extends Component {
   render() {
     return (
 
-      <UserForm pageTitle="Signup" apiUrl="/api/signup" />
+      <UserForm pageTitle="signup" apiUrl="/api/signup" />
 
     )
   }

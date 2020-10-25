@@ -34,11 +34,10 @@ class UserForm extends Component {
         }
       })
       .then(response => {
-        console.log(response.data);
-        this.props.history.push('/');
+        console.log(response);
+        this.exeApiSucess(response);
       })
       .catch(error => {
-        console.log(error.response);
 
         const errorText = error.response.data.errors;
 
@@ -47,9 +46,9 @@ class UserForm extends Component {
         if (errorText.email) {
           errorMsg.email = errorText.email;
         }
-        if (errorText.name) {
-          errorMsg.name = errorText.name;
-        }
+        // if (errorText.name) {
+        //   errorMsg.name = errorText.name;
+        // }
         if (errorText.password) {
           errorMsg.password = errorText.password;
         }
@@ -58,7 +57,33 @@ class UserForm extends Component {
       });
   }
 
+  exeApiSucess = (response) => {
+    if (this.props.pageTitle === 'signup') {
+      this.props.history.push('/');
+    }
+
+    if (this.props.pageTitle === 'login') {
+      localStorage.setItem('loginToken', response.data);
+      console.log(response.data);
+      // console.log(response);
+      this.props.history.push('/');
+    }
+  }
+
+  getNameParts = () => {
+    if (this.props.pageTitle === 'signup') {
+      return (
+        <div className="UserForm__row">
+          <label className="UserForm__label">user-name</label>
+          <input className="UserForm__input" type="text" name="name" />
+          <span className="UserForm__error">{this.state.errorMsg.name}</span>
+        </div>
+      );
+    }
+  }
+
   render() {
+
     return (
       <div className="UserForm">
         <h2 className="UserForm__ttl">{this.props.pageTitle}</h2>
@@ -76,11 +101,9 @@ class UserForm extends Component {
             <input className="UserForm__input" type="email" name="email" />
             <span className="UserForm__error">{this.state.errorMsg.email}</span>
           </div>
-          <div className="UserForm__row">
-            <label className="UserForm__label">user-name</label>
-            <input className="UserForm__input" type="text" name="name" />
-            <span className="UserForm__error">{this.state.errorMsg.name}</span>
-          </div>
+
+          {this.getNameParts()}
+          
           <div className="UserForm__row">
             <label className="UserForm__label">password</label>
             <input className="UserForm__input" type="password" name="password" />

@@ -12,18 +12,17 @@ import Login from './page/Login/Login';
 
 class App extends Component {
 
-
-
   render() {
     return (
 
       <BrowserRouter>
         <div>
           <Header />
+          <div>{localStorage.getItem('loginToken')}</div>
           <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/signup' component={Signup} />
-            <Route path='/login' component={Login} />
+            <Route path='/login' component={Login} setToken={(token) => this.setToken(token)} />
           </Switch>
         </div>
       </BrowserRouter>

@@ -8,6 +8,7 @@
   @at-root {
     .UserForm__ttl {
       @include pageTtl;
+      text-transform: capitalize;
     }
   }
 }
