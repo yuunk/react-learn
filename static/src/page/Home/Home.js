@@ -14,9 +14,13 @@ class Home extends Component {
         <div className="Home__container">
           <h1>nyanstagram</h1>
           <p>登録して友達の写真や動画をチェックしよう</p>
-          <button className="Home__loginBtn">ログイン</button>
+          <Link
+            className="Home__link"
+            to="/login"
+          >ログイン</Link>
           <p>または</p>
           <Link
+            className="Home__link"
             to="/signup"
           >メールドレスで登録</Link>
         </div>

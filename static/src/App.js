@@ -8,6 +8,7 @@ import Header from './components/Header/Header';
 // page
 import Home from './page/Home/Home';
 import Signup from './page/Signup/Signup';
+import Login from './page/Login/Login';
 
 class App extends Component {
 
@@ -22,6 +23,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/signup' component={Signup} />
+            <Route path='/login' component={Login} />
           </Switch>
         </div>
       </BrowserRouter>

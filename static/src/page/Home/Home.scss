@@ -1,10 +1,20 @@
-.Home {
+@import "../../style/var.scss";
 
+.Home {
   @at-root {
     .Home__container {
       width: 90%;
       margin: 0 auto;
       text-align: center;
+      line-height: 1.5;
+    }
+
+    .Home__link {
+      color: $color_main;
+
+      &:visited {
+        color: $color_main;
+      }
     }
   }
 }

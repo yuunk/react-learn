@@ -1,10 +1,12 @@
 @import "../../style/var.scss";
+@import '../../style/components/form.scss';
 
-.Signup {
+.UserForm {
   @include inner;
+  @include form;
 
   @at-root {
-    .Signup__ttl {
+    .UserForm__ttl {
       @include pageTtl;
     }
   }

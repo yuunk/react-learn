@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-
 import UserForm from '../../components/UserForm/UserForm';
 
 
-class Signup extends Component {
+class Login extends Component {
 
   render() {
     return (
 
-      <UserForm pageTitle="Signup" apiUrl="/api/signup" />
+      <UserForm pageTitle="Login" apiUrl="/api/login" />
 
     )
   }
 
 }
 
-export default withRouter(Signup);
+export default withRouter(Login);
