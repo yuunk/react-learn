@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+
 import './Header.scss';
 
 const header = () => {
@@ -13,8 +14,7 @@ const header = () => {
         <Link
           to="/signup"
         >signup</Link>
-      </nav>
-
+      </nav>      
     </header>
   );
 }

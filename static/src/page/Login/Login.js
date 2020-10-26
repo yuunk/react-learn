@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+
 import UserForm from '../../components/UserForm/UserForm';
 
 class Login extends Component {
@@ -13,10 +14,15 @@ class Login extends Component {
     console.log(token.data, 'ok');
   }
 
+  exeLoginSucess = () => {
+    console.log('success');
+  }
+
   render() {
     return (
 
-      <UserForm pageTitle="login" apiUrl="/api/login" setToken={(token) => this.props.setToken(token)} />
+      <UserForm pageTitle="login" apiUrl="/api/login"
+        exeLoginSucess={() => this.exeLoginSucess()} />
 
     )
   }

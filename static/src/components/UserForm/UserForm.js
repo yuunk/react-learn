@@ -19,7 +19,8 @@ class UserForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(event.target.name);
+
+    this.setState({ email: event.target.email.value });
 
     const formData = new FormData();
 
@@ -46,9 +47,9 @@ class UserForm extends Component {
         if (errorText.email) {
           errorMsg.email = errorText.email;
         }
-        // if (errorText.name) {
-        //   errorMsg.name = errorText.name;
-        // }
+        if (errorText.name) {
+          errorMsg.name = errorText.name;
+        }
         if (errorText.password) {
           errorMsg.password = errorText.password;
         }
@@ -64,8 +65,8 @@ class UserForm extends Component {
 
     if (this.props.pageTitle === 'login') {
       localStorage.setItem('loginToken', response.data);
-      console.log(response.data);
-      // console.log(response);
+      localStorage.setItem('email', this.state.email);
+      // console.log(response.data);
       this.props.history.push('/');
     }
   }
