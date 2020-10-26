@@ -9,6 +9,7 @@ import CheckUser from '../../components/CheckUser/CheckUser';
 
 class Home extends Component {
 
+
   render() {
     return (
       <div className="Home">
@@ -16,7 +17,7 @@ class Home extends Component {
           <h1>nyanstagram</h1>
           <p>登録して友達の写真や動画をチェックしよう</p>
 
-          <CheckUser contentReverse={true}>
+          <CheckUser contentReverse={false}>
             <Link
               className="Home__link"
               to="/login"

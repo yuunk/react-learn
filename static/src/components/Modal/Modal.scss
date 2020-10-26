@@ -1,0 +1,37 @@
+.Modal {
+  position: fixed;
+  top: -300px;
+  width: 70%;
+  max-width: 400px;
+  left: 50%;
+  height: 200px;
+  transform: translate(-50%, 0);
+  transition-duration: .5s;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  background-color: rgb(103, 103, 103);
+  align-items: flex-start;
+  padding-top: 30px;
+
+  &.show {
+    transform: translate(-50%, 500px);
+    transition-duration: .5s;
+  }
+
+  button {
+    background-color: #fff;
+    width: 40%;
+    font-size: 20px;
+    padding: 10px;
+    // height: 30px;
+    font-weight: bold;
+  }
+
+  @at-root {
+    .Modal__txt {
+      text-align: center;
+      width: 100%;
+    }
+  }
+}

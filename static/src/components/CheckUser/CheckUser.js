@@ -34,7 +34,7 @@ class CheckUser extends Component {
           } else {
             this.setState({ isLogin: false });
           }
-          
+
         })
         .catch(error => {
           console.log(error);
@@ -52,12 +52,17 @@ class CheckUser extends Component {
     let content;
 
     if (this.state.isLogin && !this.props.contentReverse) {
+      content = this.props.contentLogin;
+    }
+
+    if (!this.state.isLogin) {
       content = this.props.children;
     }
 
-
     return (
-      <div>{content}</div>
+      <React.Fragment>
+        {content}
+      </React.Fragment>
     )
   }
 
