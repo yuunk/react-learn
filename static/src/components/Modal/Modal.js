@@ -2,15 +2,21 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
+// context
+import ModalContext from '../../context/ModalContext';
+
+// style
 import './Modal.scss';
 
 class Modal extends Component {
+
+  static contextType = ModalContext;
 
   logout = () => {
     const email = localStorage.getItem('email');
 
     axios
-      .post('/api/user/logout', {
+      .post('/api/auth/logout', {
         'email': email
       },
         {
@@ -32,15 +38,15 @@ class Modal extends Component {
 
     let modalStyle = 'Modal';
 
-    if (this.props.show === true) {
+    if (this.context.show === true) {
       modalStyle += ' show';
     }
 
     return (
       <div className={modalStyle}>
-        <div className="Modal__txt">ログアウトしますか</div>
-        <button onClick={() => this.logout()}>yes</button>
-        <button onClick={(show, type) => this.props.updateModal(false, 'logout')}>no</button>
+        <div className="Modal__txt">{this.context.text}</div>
+        <button onClick={this.context.ok}>ok</button>
+        <button onClick={this.context.cancel}>no</button>
       </div>
     )
   }

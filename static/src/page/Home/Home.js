@@ -4,9 +4,8 @@ import { Link } from 'react-router-dom';
 // context
 import AuthContext from '../../context/AuthContext';
 
+// style
 import './Home.scss';
-
-import CheckUser from '../../components/CheckUser/CheckUser';
 
 
 class Home extends Component {

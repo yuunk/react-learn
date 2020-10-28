@@ -1,8 +1,13 @@
+import axios from 'axios';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 // context
 import AuthContext from '../../context/AuthContext';
+import ModalContext from '../../context/ModalContext';
+
+// function
 
 
 import './Header.scss';
@@ -11,12 +16,28 @@ class Header extends Component {
 
   static contextType = AuthContext;
 
-  state = {
-    navigation: ''
-  }
+  logout = () => {
+    const token = localStorage.getItem('access_token');
 
-  loginNav = () => {
-
+    if (token !== null) {
+      axios.get('/api/auth/logout', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      })
+        .then(response => {
+          if (response.status === 200 && response.data) {
+            this.props.history.push('/');
+            this.context.logout();
+          }
+        })
+        .catch(error => {
+          console.log(error);
+          this.props.history.push('/');
+        });
+    } else {
+      this.props.history.push('/');
+    }
   }
 
   updateNav = () => {
@@ -26,7 +47,15 @@ class Header extends Component {
           <Link
             to="/"
           >Home</Link>
-          <a onClick={(show, type) => this.props.updateModal(true, 'logout')}>logout</a>
+          <ModalContext.Consumer>
+            {
+              (context) =>
+                <button
+                  onClick={(text, func) => context.open('ログアウトしますか', this.logout)}
+                >logout
+                </button>
+            }
+          </ModalContext.Consumer>
         </React.Fragment>
       );
     } else {
@@ -59,4 +88,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default withRouter(Header);
