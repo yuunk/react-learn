@@ -35,11 +35,11 @@ class UserForm extends Component {
         }
       })
       .then(response => {
-        console.log(response);
-        this.exeApiSucess(response);
+        this.props.exeSuccessApi(response);
       })
       .catch(error => {
 
+        console.log(error);
         const errorText = error.response.data.errors;
 
         let errorMsg = { ...this.state.errorMsg };
@@ -63,12 +63,6 @@ class UserForm extends Component {
       this.props.history.push('/');
     }
 
-    if (this.props.pageTitle === 'login') {
-      localStorage.setItem('loginToken', response.data);
-      localStorage.setItem('email', this.state.email);
-      // console.log(response.data);
-      this.props.history.push('/');
-    }
   }
 
   getNameParts = () => {

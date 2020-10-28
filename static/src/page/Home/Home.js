@@ -1,13 +1,35 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+// context
+import AuthContext from '../../context/AuthContext';
+
 import './Home.scss';
 
-// import InputTweet from '../../components/InputTweet/InputTweet';
-// import TweetList from '../../components/TweetList/TweetList';
 import CheckUser from '../../components/CheckUser/CheckUser';
 
+
 class Home extends Component {
+
+  static contextType = AuthContext;
+
+  toggleContent = () => {
+    if (!this.context.isLogin) {
+      return (
+        <React.Fragment>
+          <Link
+            className="Home__link"
+            to="/login"
+          >ログイン</Link>
+          <p>または</p>
+          <Link
+            className="Home__link"
+            to="/signup"
+          >メールドレスで登録</Link>
+        </React.Fragment>
+      );
+    }
+  }
 
 
   render() {
@@ -17,20 +39,9 @@ class Home extends Component {
           <h1>nyanstagram</h1>
           <p>登録して友達の写真や動画をチェックしよう</p>
 
-          <CheckUser contentReverse={false}>
-            <Link
-              className="Home__link"
-              to="/login"
-            >ログイン</Link>
-            <p>または</p>
-            <Link
-              className="Home__link"
-              to="/signup"
-            >メールドレスで登録</Link>
-          </CheckUser>
+          {this.toggleContent()}
 
         </div>
-        <CheckUser />
       </div>
     )
   }

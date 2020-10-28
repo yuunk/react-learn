@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
+// context
+import AuthContext from  '../../context/AuthContext';
+
+// components
 import UserForm from '../../components/UserForm/UserForm';
 
 class Login extends Component {
@@ -9,20 +13,20 @@ class Login extends Component {
     loginToken: ''
   }
 
-  setToken = (token) => {
-    // this.setState({ loginToken: token });
-    console.log(token.data, 'ok');
-  }
+  static contextType = AuthContext;
 
-  exeLoginSucess = () => {
-    console.log('success');
+  exeSuccessApi = (response) => {
+    console.log(response.data.access_token);
+    localStorage.setItem('access_token', response.data.access_token);
+    this.context.login();
+    this.props.history.push('/');
   }
 
   render() {
     return (
 
-      <UserForm pageTitle="login" apiUrl="/api/login"
-        exeLoginSucess={() => this.exeLoginSucess()} />
+      <UserForm pageTitle="login" apiUrl="/api/auth/login"
+        exeSuccessApi={(token) => this.exeSuccessApi(token)} />
 
     )
   }

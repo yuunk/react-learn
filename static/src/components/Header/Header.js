@@ -1,38 +1,58 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import CheckUser from '../CheckUser/CheckUser';
+// context
+import AuthContext from '../../context/AuthContext';
+
 
 import './Header.scss';
 
 class Header extends Component {
 
-  loginNav = () => {
-    return (
-      <React.Fragment>
-        <Link
-          to="/"
-        >Home</Link>
-        <a onClick={(show, type) => this.props.updateModal(true, 'logout')}>logout</a>
-      </React.Fragment>
-    );
+  static contextType = AuthContext;
+
+  state = {
+    navigation: ''
   }
 
+  loginNav = () => {
+
+  }
+
+  updateNav = () => {
+    if (this.context.isLogin) {
+      return (
+        <React.Fragment>
+          <Link
+            to="/"
+          >Home</Link>
+          <a onClick={(show, type) => this.props.updateModal(true, 'logout')}>logout</a>
+        </React.Fragment>
+      );
+    } else {
+      return (
+        <React.Fragment>
+          <Link
+            to="/"
+          >Home</Link>
+          <Link
+            to="/signup"
+          >signup</Link>
+        </React.Fragment>
+      )
+    }
+  }
+  
+  componentDidMount = () => {
+  }
+
+
   render() {
+
     return (
       <header className="Header">
         <nav className="Header__nav">
-          <CheckUser
-            contentLogin={this.loginNav()}
-            contentReverse={false}
-          >
-            <Link
-              to="/"
-            >Home</Link>
-            <Link
-              to="/signup"
-            >signup</Link>
-          </CheckUser>
+          {this.updateNav()}
         </nav>
       </header>
     );
