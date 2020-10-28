@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 // context
 import AuthContext from '../../context/AuthContext';
 
+// component
+import Posts from '../../components/Posts/Posts';
+
 // style
 import './Home.scss';
 
@@ -13,7 +16,10 @@ class Home extends Component {
   static contextType = AuthContext;
 
   toggleContent = () => {
-    if (!this.context.isLogin) {
+    
+    if (this.context.isLogin) {
+      return <Posts />
+    } else {
       return (
         <React.Fragment>
           <h1>nyanstagram</h1>
@@ -30,6 +36,7 @@ class Home extends Component {
         </React.Fragment>
       );
     }
+
   }
 
 

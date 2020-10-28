@@ -8,6 +8,7 @@ import './PostForm.scss';
 class Post extends Component {
 
   state = {
+    postSuccess: false,
     errorMsg: {
 
     }
@@ -23,13 +24,14 @@ class Post extends Component {
 
     const token = localStorage.getItem('access_token');
 
-    axios.post('/api/post', formData, {
+    axios.post('/api/post/new', formData, {
       headers: {
         Authorization: `Bearer ${token}`,
         'content-type': 'multipart/form-data',
       }
     }).then(response => {
       console.log(response);
+      this.props.history.push('/');
     }).catch(error => {
       console.log(error);
     })

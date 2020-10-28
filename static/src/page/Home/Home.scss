@@ -3,8 +3,7 @@
 .Home {
   @at-root {
     .Home__container {
-      width: 90%;
-      margin: 0 auto;
+      @include inner;
       text-align: center;
       line-height: 1.5;
     }

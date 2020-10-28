@@ -2,8 +2,8 @@ $color_main: orange;
 $color_base: rgb(72, 71, 71);
 
 @mixin inner {
+  padding: 30px 0;
   width: 90%;
-  max-width: 500px;
   margin: 0 auto;
 }
 
