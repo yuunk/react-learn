@@ -6,12 +6,14 @@ import Modalcontext from '../context/ModalContext';
 
 // components
 import Header from '../components/Header/Header';
+import MenuBar from '../components/MenuBar/MenuBar';
 import Modal from '../components/Modal/Modal';
 
 // page
 import Home from '../page/Home/Home';
 import Signup from '../page/Signup/Signup';
 import Login from '../page/Login/Login';
+import Post from '../page/Post/Post';
 
 
 class ModalContainer extends Component {
@@ -41,6 +43,9 @@ class ModalContainer extends Component {
     this.setState({ show: false });
   }
 
+  initPage = () => {
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -62,7 +67,10 @@ class ModalContainer extends Component {
             <Route exact path='/' component={Home} />
             <Route path='/signup' component={Signup} />
             <Route path='/login' component={Login} setToken={(token) => this.setToken(token)} />
+            <Route path='/post' component={Post} />
           </Switch>
+
+          <MenuBar />
 
         </Modalcontext.Provider>
       </BrowserRouter>

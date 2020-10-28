@@ -1,0 +1,7 @@
+@import '../../style//components/form.scss';
+
+.PostForm {
+  @include form;
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,11 @@
+@import '../../style/var.scss';
+
+.Post {
+  @include inner;
+
+  @at-root {
+    .Post__pageTtl {
+      @include pageTtl;
+    }
+  }
+}

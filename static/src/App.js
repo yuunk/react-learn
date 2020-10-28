@@ -59,7 +59,7 @@ class App extends Component {
 
     return (
 
-      <div>
+      <div className="App">
         <AuthContext.Provider
           value={{
             isLogin: this.state.isLogin,

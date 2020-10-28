@@ -16,6 +16,8 @@ class Home extends Component {
     if (!this.context.isLogin) {
       return (
         <React.Fragment>
+          <h1>nyanstagram</h1>
+          <p>登録して友達の写真や動画をチェックしよう</p>
           <Link
             className="Home__link"
             to="/login"
@@ -35,11 +37,7 @@ class Home extends Component {
     return (
       <div className="Home">
         <div className="Home__container">
-          <h1>nyanstagram</h1>
-          <p>登録して友達の写真や動画をチェックしよう</p>
-
           {this.toggleContent()}
-
         </div>
       </div>
     )
