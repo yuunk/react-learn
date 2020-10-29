@@ -13,15 +13,16 @@ class Posts extends Component {
     posts: []
   }
 
-  fetchPosts = () => {
+  fetchPosts = (url) => {
     
     const token = localStorage.getItem('access_token');
 
-    axios.get('/api/post', {
+    axios.get(url, {
       headers: {
         Authorization: `Bearer ${token}`,
       }
     }).then(response => {
+      console.log(response);
       this.setState({ posts: response.data });
     }).catch(error => {
       console.log(error);
@@ -30,14 +31,14 @@ class Posts extends Component {
   }
 
   componentDidMount = () => {
-    this.fetchPosts();
+    this.fetchPosts(this.props.url);
   }
 
   render() {
 
     let posts;
 
-    if (this.state.posts) {
+    if (this.state.posts.length > 0) {
       posts = (
         <ul>
           {this.state.posts.map(post => {
@@ -46,7 +47,6 @@ class Posts extends Component {
                 key={post.id}
                 id={post.id}
                 title={post.title}
-                name={post.name}
                 date={post.updated_at.substr(0, 10)}
               />
             )

@@ -15,9 +15,10 @@ import Signup from '../page/Signup/Signup';
 import Login from '../page/Login/Login';
 import Post from '../page/Post/Post';
 import PostSingle from '../page/Post/PostSingle/PostSingle';
+import Favorite from '../page/Favorite/Favorite';
 
 
-class ModalContainer extends Component {
+class AppContainer extends Component {
 
   state = {
     show: false,
@@ -70,6 +71,7 @@ class ModalContainer extends Component {
             <Route path='/login' component={Login} setToken={(token) => this.setToken(token)} />
             <Route path='/post/:id' component={PostSingle} />
             <Route path='/post' component={Post} />
+            <Route path='/favorite' component={Favorite} />
           </Switch>
 
           <MenuBar />
@@ -82,4 +84,4 @@ class ModalContainer extends Component {
 
 }
 
-export default ModalContainer;
+export default AppContainer;

@@ -1,0 +1,11 @@
+@import '../../style/var.scss';
+
+.Favorite {
+  @include inner;
+
+  @at-root {
+    .Favorite__pageTitle {
+      @include pageTtl;
+    }
+  }
+}

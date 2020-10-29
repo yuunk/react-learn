@@ -36,7 +36,9 @@ const menuBar = () => {
         </li>
         <li>
           <button>
-            <IconFavorite className="MenuBar__favorite" />
+            <Link to="/favorite">
+              <IconFavorite className="MenuBar__favorite" />
+            </Link>
           </button>
         </li>
         <li>

@@ -58,13 +58,6 @@ class UserForm extends Component {
       });
   }
 
-  exeApiSucess = (response) => {
-    if (this.props.pageTitle === 'signup') {
-      this.props.history.push('/');
-    }
-
-  }
-
   getNameParts = () => {
     if (this.props.pageTitle === 'signup') {
       return (

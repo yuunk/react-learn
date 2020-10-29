@@ -18,7 +18,7 @@ class Home extends Component {
   toggleContent = () => {
     
     if (this.context.isLogin) {
-      return <Posts />
+      return <Posts url='/api/post' />
     } else {
       return (
         <React.Fragment>

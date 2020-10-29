@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 // container
-import ModalContainer from './container/ModalContainer';
+import AppContainer from './container/AppContainer';
 
 // context
 import AuthContext from './context/AuthContext';
@@ -67,7 +67,7 @@ class App extends Component {
             logout: this.logout
           }}
         >
-          <ModalContainer />
+          <AppContainer />
 
         </AuthContext.Provider>
       </div>

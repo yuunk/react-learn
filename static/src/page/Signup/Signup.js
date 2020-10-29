@@ -6,10 +6,18 @@ import UserForm from '../../components/UserForm/UserForm';
 
 class Signup extends Component {
 
+  execSuccessApi = () => {
+    this.props.history.push('/');
+  }
+
   render() {
     return (
 
-      <UserForm pageTitle="signup" apiUrl="/api/signup" />
+      <UserForm
+        pageTitle="signup"
+        apiUrl="/api/signup"
+        exeSuccessApi={this.execSuccessApi}
+      />
 
     )
   }
