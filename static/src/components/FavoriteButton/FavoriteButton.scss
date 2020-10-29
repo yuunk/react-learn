@@ -1,0 +1,9 @@
+.FavoriteButton {
+  fill: none;
+  stroke: #fff;
+
+  &.-active {
+    fill: pink;
+    stroke: none;
+  }
+}

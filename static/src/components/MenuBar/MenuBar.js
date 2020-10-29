@@ -9,7 +9,7 @@ import './MenuBar.scss';
 import { ReactComponent as IconHome } from '../../assets/img/icon/home.svg';
 import { ReactComponent as IconSearch } from '../../assets/img/icon/search.svg';
 import { ReactComponent as IconPlus } from '../../assets/img/icon/plus.svg';
-import { ReactComponent as IconStar } from '../../assets/img/icon/star-empty.svg';
+import { ReactComponent as IconFavorite } from '../../assets/img/icon/star-full.svg';
 import { ReactComponent as IconUser } from '../../assets/img/icon/user.svg';
 
 const menuBar = () => {
@@ -36,7 +36,7 @@ const menuBar = () => {
         </li>
         <li>
           <button>
-            <IconStar />
+            <IconFavorite className="MenuBar__favorite" />
           </button>
         </li>
         <li>
