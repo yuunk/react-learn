@@ -44,6 +44,7 @@ class Posts extends Component {
             return (
               <PostChild
                 key={post.id}
+                id={post.id}
                 title={post.title}
                 name={post.name}
                 date={post.updated_at.substr(0, 10)}

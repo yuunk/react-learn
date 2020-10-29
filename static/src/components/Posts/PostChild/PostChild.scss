@@ -6,6 +6,14 @@
   padding: 5px;
   margin-bottom: 10px;
 
+  a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
   @at-root {
     .PostChild__date {
       font-size: 12px;

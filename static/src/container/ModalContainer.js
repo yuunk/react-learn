@@ -14,6 +14,7 @@ import Home from '../page/Home/Home';
 import Signup from '../page/Signup/Signup';
 import Login from '../page/Login/Login';
 import Post from '../page/Post/Post';
+import PostSingle from '../page/Post/PostSingle/PostSingle';
 
 
 class ModalContainer extends Component {
@@ -67,6 +68,7 @@ class ModalContainer extends Component {
             <Route exact path='/' component={Home} />
             <Route path='/signup' component={Signup} />
             <Route path='/login' component={Login} setToken={(token) => this.setToken(token)} />
+            <Route path='/post/:id' component={PostSingle} />
             <Route path='/post' component={Post} />
           </Switch>
 
