@@ -1,0 +1,14 @@
+.ProfileHead {
+  padding: 15px 5px;
+  display: flex;
+
+  @at-root {
+    .ProfileHead__avator {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background-color: rgb(149, 147, 147);
+      margin-right: 15px;
+    }
+  }
+}

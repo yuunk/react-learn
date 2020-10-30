@@ -1,0 +1,42 @@
+@import '../../../style/var.scss';
+
+.ProfileEdit {
+  @at-root {
+    .ProfileEdit__button {
+      border: 1px solid #fff;
+      padding: 5px;
+      font-size: 16px;
+      color: #fff;
+      margin-top: 15px;
+    }
+
+    .ProfileEdit__panelHeader {
+      border-top: 1px solid #fff;
+      border-bottom: 1px solid #fff;
+      padding: 5px;
+    }
+
+    .ProfileEdit__closePanel {
+      color: #fff;
+      font-size: 20px;
+    }
+
+    .ProfileEdit__panel {
+      background-color: $color_base;
+      position: fixed;
+      height: 100vh;
+      overflow: scroll;
+      padding-bottom: 80px;
+      width: 100%;
+      transform: translateY(100vh);
+      transition-duration: 0.3s;
+      top: 0;
+      left: 0;
+
+      &.-active {
+        transform: translateY(0);
+        transition-duration: 0.3s;
+      }
+    }
+  }
+}

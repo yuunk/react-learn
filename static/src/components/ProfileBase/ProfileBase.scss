@@ -1,0 +1,17 @@
+@import '../../style/var.scss';
+
+.ProfileBase {
+  @include inner;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  @at-root {
+
+    .ProfileBase__profile {
+      padding: 5px;
+      font-size: 16px;
+    }
+
+  }
+}

@@ -45,7 +45,7 @@ const menuBar = () => {
         </li>
         <li>
           <button>
-            <Link to="/profile">
+            <Link to="/myprofile">
               <IconUser />
             </Link>
           </button>
