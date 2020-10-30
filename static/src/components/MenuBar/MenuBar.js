@@ -19,7 +19,9 @@ const menuBar = () => {
       <ul>
         <li>
           <button>
-            <IconHome />
+            <Link to="/">
+              <IconHome />
+            </Link>
           </button>
         </li>
         <li>
@@ -43,7 +45,9 @@ const menuBar = () => {
         </li>
         <li>
           <button>
-            <IconUser />
+            <Link to="/profile">
+              <IconUser />
+            </Link>
           </button>
         </li>
       </ul>
