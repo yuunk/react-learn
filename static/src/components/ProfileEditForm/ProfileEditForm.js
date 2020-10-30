@@ -18,6 +18,7 @@ class ProfileEditFrom extends Component {
     const formData = new FormData();
 
     formData.append('name', event.target.name.value);
+    formData.append('text', event.target.introduction.value);
 
     axios.post('/api/profile/update', formData, {
       headers: {
@@ -42,7 +43,7 @@ class ProfileEditFrom extends Component {
     }).then(response => {
       console.log(response);
       this.setState({ name: response.data.name });
-      this.setState({ introduction: response.data.introduction });
+      this.setState({ introduction: response.data.text });
     }).catch(error => {
       console.log(error);
     });
@@ -67,12 +68,15 @@ class ProfileEditFrom extends Component {
         </div>
         <div className="ProfileEditForm__row">
           <label className="ProfileEditForm__label">自己紹介</label>
-          <textarea name="introduction"></textarea>
+          <textarea
+            name="introduction"
+            defaultValue={this.state.introduction}
+          ></textarea>
         </div>
         <button
           className="ProfileEditForm__button"
           type="submit"
-          defaultValue={this.state.introduction}>submit</button>
+          >save</button>
       </form>
     );
   }
