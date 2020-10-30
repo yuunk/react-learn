@@ -4,13 +4,33 @@
   @include inner;
   display: flex;
   justify-content: center;
+  flex-direction: column;
 
   @at-root {
+    .Profile__head {
+      padding: 15px 5px;
+      display: flex;
+    }
+
+    .Profile__avator {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background-color: rgb(149, 147, 147);
+      margin-right: 15px;
+    }
+
+    .Profile__profile {
+      padding: 5px;
+      font-size: 16px;
+    }
+
     .Profile__editButton {
       border: 1px solid #fff;
       padding: 5px;
       font-size: 16px;
       color: #fff;
+      margin-top: 15px;
     }
 
     .Profile__closePanel {
@@ -34,6 +54,7 @@
       transform: translateY(100vh);
       transition-duration: .3s;
       top: 0;
+      left: 0;
 
       &.-active {
         transform: translateY(0);

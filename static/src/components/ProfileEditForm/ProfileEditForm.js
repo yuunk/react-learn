@@ -26,32 +26,13 @@ class ProfileEditFrom extends Component {
         'content-type': 'multipart/form-data',
       }
     }).then(response => {
-      console.log(response);
+      this.props.updateProfile(response.data.name, response.data.text);
     }).catch(error => {
       console.log(error);
     });
 
   }
 
-  fetchProfile = () => {
-    const token = localStorage.getItem('access_token');
-
-    axios.get('api/profile/fetch', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      }
-    }).then(response => {
-      console.log(response);
-      this.setState({ name: response.data.name });
-      this.setState({ introduction: response.data.text });
-    }).catch(error => {
-      console.log(error);
-    });
-  }
-
-  componentDidMount = () => {
-    this.fetchProfile();
-  }
 
   render() {
     return (
@@ -64,13 +45,13 @@ class ProfileEditFrom extends Component {
           <input
             className="ProfileEditForm__input"
             name="name"
-            defaultValue={this.state.name}></input>
+            defaultValue={this.props.name}></input>
         </div>
         <div className="ProfileEditForm__row">
           <label className="ProfileEditForm__label">自己紹介</label>
           <textarea
             name="introduction"
-            defaultValue={this.state.introduction}
+            defaultValue={this.props.introduction}
           ></textarea>
         </div>
         <button
