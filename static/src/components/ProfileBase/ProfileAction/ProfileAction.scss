@@ -1,0 +1,14 @@
+.ProfileAction {
+
+  @at-root {
+    .ProfileAction__btn {
+      color: #fff;
+      border: 1px solid #fff;
+      width: 120px;
+
+      & + .ProfileAction__btn {
+        margin-left: 10px;
+      }
+    }
+  }
+}

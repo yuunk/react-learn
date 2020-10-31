@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+// context
+import ProfileContext from '../../context/ProfileContext';
+
 // component
 import ProfileBase from '../../components/ProfileBase/ProfileBase';
 
@@ -10,10 +13,18 @@ class Profile extends Component {
 
   render() {
     return (
-      <ProfileBase
-        myprofile={false}
-        userId={this.props.match.params.id}
-      />
+      <ProfileContext.Provider
+        value={
+          {
+            profileId: this.props.match.params.id
+          }
+        }
+      >
+        <ProfileBase
+          myprofile={false}
+          userId={this.props.match.params.id}
+        />
+      </ProfileContext.Provider>
     );
   }
 }

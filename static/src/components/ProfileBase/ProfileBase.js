@@ -4,6 +4,7 @@ import axios from 'axios';
 // component
 import ProfileHead from './ProfileHead/ProfileHead';
 import ProfileEdit from './ProfileEdit/ProfileEdit';
+import ProfileAction from './ProfileAction/ProfileAction';
 
 // style
 import './ProfileBase.scss';
@@ -53,11 +54,13 @@ class ProfileBase extends Component {
 
   myprofileContent = () => {
     return (
-      <ProfileEdit
-        name={this.state.profile.name}
-        introduction={this.state.profile.introduction}
-        updateProfile={(name, introduction) => { this.updateProfile(name, introduction)}}
-      />
+      <React.Fragment>
+        <ProfileEdit
+          name={this.state.profile.name}
+          introduction={this.state.profile.introduction}
+          updateProfile={(name, introduction) => { this.updateProfile(name, introduction) }}
+        />
+      </React.Fragment>
     );
   }
 
@@ -72,6 +75,7 @@ class ProfileBase extends Component {
         <p className="Profile__profile">{this.state.profile.name}</p>
         <p className="Profile__profile">{this.state.profile.introduction}</p>
         {this.props.myprofile ? this.myprofileContent() : null}
+        {this.props.myprofile ? null : <ProfileAction /> }
       </div>
     );
   }
