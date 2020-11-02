@@ -1,29 +1,10 @@
-import React, { Component, useContext } from 'react';
+import React, { useContext } from 'react';
 
 // context
 import ProfileBaseContext from '../../../context/ProfileBaseContext';
 
 // style
 import './ProfileHeader.scss';
-
-// class ProfileHeader extends Component {
-
-//   toggleHeader = () => {
-//     switch (this.props.type) {
-//       case 'followPanel':
-//         console.log('panel')
-//         break;
-//     }
-//   }
-
-//   render() {
-//     return (
-//       <div className="ProfileHeader">
-//         {toggleHeader}
-//       </div>
-//     );
-//   }
-// }
 
 const ProfileHeader = (props) => {
 
@@ -37,6 +18,8 @@ const ProfileHeader = (props) => {
     switch (props.type) {
       case 'followPanel':
         content = followPanel();
+        break;
+      default:
         break;
     }
 

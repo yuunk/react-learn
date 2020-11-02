@@ -9,11 +9,15 @@
     }
 
     .Home__link {
-      color: $color_main;
 
-      &:visited {
-        color: $color_main;
-      }
+    }
+
+    .Home__showPost {
+      margin-top: 50px;
+      padding: 25px 0;
+      color: #fff;
+      text-decoration: underline;
+      font-size: 20px;
     }
   }
 }

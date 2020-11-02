@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 // context
-import HeaderContext from '../context/HeaderContext';
 import Modalcontext from '../context/ModalContext';
 
 // components
-import Header from '../components/Header/Header';
 import MenuBar from '../components/MenuBar/MenuBar';
 import Modal from '../components/Modal/Modal';
 
@@ -28,7 +26,6 @@ class AppContainer extends Component {
     show: false,
     text: '',
     clickOk: () => { },
-    headerType: ''
   }
 
   open = (text, func) => {
@@ -50,19 +47,10 @@ class AppContainer extends Component {
     this.setState({ show: false });
   }
 
-  updateHeader = (type) => {
-    this.setState({ headerType: type });
-  }
-
   render() {
     return (
       <BrowserRouter>
-        <HeaderContext.Provider
-          value={{
-            type: this.state.headerType,
-            update: this.updateHeader
-          }}
-        >
+
           <Modalcontext.Provider
             value={{
               show: this.state.show,
@@ -74,11 +62,6 @@ class AppContainer extends Component {
           >
 
             <Modal />
-
-            {/* <Header
-              updateModal={(show, type) => this.updateModal(show, type)}
-              type={this.state.headerType}
-            /> */}
 
             <Switch>
               <Route exact path='/' component={Home} />
@@ -95,7 +78,7 @@ class AppContainer extends Component {
             <MenuBar />
 
           </Modalcontext.Provider>
-        </HeaderContext.Provider>
+
       </BrowserRouter>
     );
   }

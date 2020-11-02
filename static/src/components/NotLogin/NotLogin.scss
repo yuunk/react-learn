@@ -1,0 +1,14 @@
+@import '../../style/var.scss';
+
+.NotLogin {
+
+  @at-root {
+    .NotLogin__link {
+      color: $color_main;
+
+      &:visited {
+        color: $color_main;
+      }
+    }
+  }
+}

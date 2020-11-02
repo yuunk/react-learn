@@ -16,13 +16,12 @@ class Posts extends Component {
 
   fetchPosts = (url) => {
     
-    // const token = localStorage.getItem('access_token');
 
     axios.get(url).then(response => {
       console.log(response);
       this.setState({ posts: response.data });
     }).catch(error => {
-      if (error.response.status == 401) {
+      if (error.response.status === 401) {
         this.props.history.push('/');
       }
     });

@@ -1,90 +1,43 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
 
 // context
 import AuthContext from '../../context/AuthContext';
-import HeaderContext from '../../context/HeaderContext';
 
 // component
+import HomeHeader from '../../components/Header/HomeHeader';
 import Posts from '../../components/PostList/PostList';
+import NotLogin from '../../components/NotLogin/NotLogin';
 
 // style
 import './Home.scss';
 
+const Home = () => {
 
-class Home extends Component {
+  const authContext = useContext(AuthContext);
 
-  static contextType = HeaderContext;
+  const [showPost, setShowPost] = useState(false);
 
-  // static contextType = AuthContext;
-  // state = {
-  //   isLogin: false;
-  // }
-
-  // toggleContent = (isLogin) => {
-  //   console.log(isLogin);
-  //   if (isLogin) {
-  //     return <Posts url='/api/post' />
-  //   } else {
-  //     return (
-  //       <React.Fragment>
-  //         <h1>nyanstagram</h1>
-  //         <p>登録して友達の写真や動画をチェックしよう</p>
-  //         <Link
-  //           className="Home__link"
-  //           to="/login"
-  //         >ログイン</Link>
-  //         <p>または</p>
-  //         <Link
-  //           className="Home__link"
-  //           to="/signup"
-  //         >メールドレスで登録</Link>
-  //       </React.Fragment>
-  //     );
-  //   }
-
-  // }
-
-  componentDidMount = () => {
-    this.context.update('home');
+  const updateContent = () => {
+    if (authContext.isLogin || showPost) {
+      return <Posts url='/api/post' />;
+    } else {
+      return (
+        <React.Fragment>
+          <NotLogin />
+          <button className="Home__showPost" onClick={()=> setShowPost(true)}>投稿を見る</button>
+        </React.Fragment>
+      );
+    }
   }
 
-
-  render() {
-
-    let isLogin;
-
-    return (
-      <div className="Home">
-        <div className="Home__container">
-          <AuthContext.Consumer>
-            {(context) => {
-              if (context.isLogin) {
-                return <Posts url='/api/post' />
-              } else {
-                return (
-                  <React.Fragment>
-                    <h1>nyanstagram</h1>
-                    <p>登録して友達の写真や動画をチェックしよう</p>
-                    <Link
-                      className="Home__link"
-                      to="/login"
-                    >ログイン</Link>
-                    <p>または</p>
-                    <Link
-                      className="Home__link"
-                      to="/signup"
-                    >メールドレスで登録</Link>
-                  </React.Fragment>
-                );
-              }
-            }}
-          </AuthContext.Consumer>
-        </div>
+  return (
+    <div className="Home">
+      <HomeHeader />
+      <div className="Home__container">
+        {updateContent()}
       </div>
-    )
-  }
-
+    </div>
+  );
 }
 
 export default Home;
