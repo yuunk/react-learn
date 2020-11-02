@@ -6,7 +6,9 @@ import './ProfileFollowPanel.scss';
 class ProfileFollowPanel extends Component {
 
   state = {
-    panelClass: 'ProfileFollowPanel'
+    panelClass: 'ProfileFollowPanel',
+    followerClass: 'ProfileFollowPanel__tab',
+    followClass: 'ProfileFollowPanel__tab'
   }
 
   componentDidMount = () => {
@@ -15,20 +17,37 @@ class ProfileFollowPanel extends Component {
 
   static getDerivedStateFromProps(props, state) {
     console.log(props.active);
+    let panelClass;
+    let hoge;
     if (props.active) {
+
+      panelClass = 'ProfileFollowPanel -active';
+    } else {
+      panelClass = 'ProfileFollowPanel';
+    }
+
+    if (props.activeDefaultTab) {
       return {
-        panelClass: 'ProfileFollowPanel -active'
+        panelClass: panelClass,
+        followerClass: 'ProfileFollowPanel__tab -active',
+        followClass: 'ProfileFollowPanel__tab'
+      }
+    } else {
+      return {
+        panelClass: panelClass,
+        followerClass: 'ProfileFollowPanel__tab',
+        followClass: 'ProfileFollowPanel__tab -active'
       }
     }
-    return {panelClass: 'ProfileFollowPanel'};
+
   }
 
   render() {
     return (
       <div className={this.state.panelClass}>
         <div className="ProfileFollowPanel__nav">
-          <button className="ProfileFollowPanel__tab">フォロワー</button>
-          <button className="ProfileFollowPanel__tab">フォロー中</button>
+          <button className={this.state.followerClass}>フォロワー</button>
+          <button className={this.state.followClass}>フォロー中</button>
         </div>
       </div>
     );

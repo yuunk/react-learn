@@ -16,10 +16,14 @@ class ProfileRecord extends Component {
 
   state = {
     followPanel: false,
+    activeDefaultTab: true,
   }
 
-  activeFollowPanel = (type) => {
-    this.setState({ followPanel: true });
+  activeFollowPanel = (activeDefaultTab) => {
+    this.setState({
+      followPanel: true,
+      activeDefaultTab: activeDefaultTab
+    });
     this.context.header.update('followPanel', true);
   }
 
@@ -46,7 +50,7 @@ class ProfileRecord extends Component {
 
           <div
             className="ProfileRecord__item"
-            onClick={() => { this.activeFollowPanel('follower') }}
+            onClick={() => { this.activeFollowPanel(true) }}
           >
             <span className="ProfileRecord__number">{this.context.record.data.follow}</span>
             <span className="ProfileRecord__label">フォロワー</span>
@@ -54,7 +58,7 @@ class ProfileRecord extends Component {
 
           <div
             className="ProfileRecord__item"
-            onClick={() => { this.activeFollowPanel() }}
+            onClick={() => { this.activeFollowPanel(false) }}
           >
             <span className="ProfileRecord__number">{this.context.record.data.follower}</span>
             <span className="ProfileRecord__label">フォロー中</span>
@@ -62,7 +66,10 @@ class ProfileRecord extends Component {
 
         </ul>
 
-        <ProfileFollowPanel active={this.context.header.active} />
+        <ProfileFollowPanel
+          active={this.context.header.active}
+          activeDefaultTab={this.state.activeDefaultTab}
+        />
 
       </React.Fragment>
     );

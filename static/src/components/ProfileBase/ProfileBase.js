@@ -9,7 +9,6 @@ import ProfileBaseContext from '../../context/ProfileBaseContext';
 import ProfileHead from './ProfileHead/ProfileHead';
 import ProfileEdit from './ProfileEdit/ProfileEdit';
 import ProfileAction from './ProfileAction/ProfileAction';
-import ProfileFollowPanel from './ProfileFollowPanel/ProfileFollowPanel';
 import ProfileHeader from './ProfileHeader/ProfileHeader';
 
 // style
