@@ -1,12 +1,14 @@
 @import '../../style/var.scss';
 
 .ProfileBase {
-  @include inner;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
 
   @at-root {
+    .ProfileBase__inner {
+      @include inner;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
 
     .ProfileBase__profile {
       padding: 5px;

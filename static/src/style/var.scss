@@ -13,3 +13,21 @@ $color_base: rgb(72, 71, 71);
   text-align: center;
   padding: 30px;
 }
+
+@mixin header {
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  height: 60px;
+  border-bottom: 1px solid #fff;
+
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  button {
+    font-size: 20px;
+    color: #fff;
+  }
+}

@@ -9,6 +9,8 @@ import ProfileBaseContext from '../../context/ProfileBaseContext';
 import ProfileHead from './ProfileHead/ProfileHead';
 import ProfileEdit from './ProfileEdit/ProfileEdit';
 import ProfileAction from './ProfileAction/ProfileAction';
+import ProfileFollowPanel from './ProfileFollowPanel/ProfileFollowPanel';
+import ProfileHeader from './ProfileHeader/ProfileHeader';
 
 // style
 import './ProfileBase.scss';
@@ -30,7 +32,11 @@ class ProfileBase extends Component {
       follow: 0,
       follower: 0,
     },
-    userId: null
+    userId: null,
+    header: {
+      active: false,
+      type: ''
+    }
   }
 
   fetchProfile = () => {
@@ -94,6 +100,15 @@ class ProfileBase extends Component {
     });
   }
 
+  updateHeader = (type, isActive) => {
+    this.setState({
+      header: {
+        type: type,
+        active: isActive
+      }
+    });
+  }
+
   myprofileContent = () => {
     return (
       <React.Fragment>
@@ -124,14 +139,24 @@ class ProfileBase extends Component {
             },
             update: this.fetchRecord
           },
+          header: {
+            active: this.state.header.active,
+            type: this.state.header.type,
+            update: this.updateHeader
+          }
         }}
       >
         <div className="ProfileBase">
-          <ProfileHead />
-          <p className="Profile__profile">{this.state.profile.name}</p>
-          <p className="Profile__profile">{this.state.profile.introduction}</p>
-          {this.props.myprofile ? this.myprofileContent() : null}
-          {this.props.myprofile ? null : <ProfileAction />}
+          <ProfileHeader
+            type={this.state.header.type}
+          />
+          <div className="ProfileBase__inner">
+            <ProfileHead />
+            <p className="Profile__profile">{this.state.profile.name}</p>
+            <p className="Profile__profile">{this.state.profile.introduction}</p>
+            {this.props.myprofile ? this.myprofileContent() : null}
+            {this.props.myprofile ? null : <ProfileAction />}
+          </div>
         </div>
       </ProfileBaseContext.Provider>
     );

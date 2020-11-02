@@ -10,6 +10,11 @@ const profileBaseContext = React.createContext({
         },
         update: () => {}
     },
+    header: {
+        active: false,
+        type: '',
+        update: () => {}
+    }
 });
 
 export default profileBaseContext;

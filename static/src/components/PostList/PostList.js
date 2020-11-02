@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
 // component
 import PostChild from './PostChild/PostChild';
@@ -21,7 +22,9 @@ class Posts extends Component {
       console.log(response);
       this.setState({ posts: response.data });
     }).catch(error => {
-      console.log(error);
+      if (error.response.status == 401) {
+        this.props.history.push('/');
+      }
     });
 
   }
@@ -60,4 +63,4 @@ class Posts extends Component {
   }
 }
 
-export default Posts;
+export default withRouter(Posts);

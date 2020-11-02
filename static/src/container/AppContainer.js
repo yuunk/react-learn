@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 // context
+import HeaderContext from '../context/HeaderContext';
 import Modalcontext from '../context/ModalContext';
 
 // components
@@ -27,6 +28,7 @@ class AppContainer extends Component {
     show: false,
     text: '',
     clickOk: () => { },
+    headerType: ''
   }
 
   open = (text, func) => {
@@ -48,41 +50,52 @@ class AppContainer extends Component {
     this.setState({ show: false });
   }
 
-  initPage = () => {
+  updateHeader = (type) => {
+    this.setState({ headerType: type });
   }
 
   render() {
     return (
       <BrowserRouter>
-        <Modalcontext.Provider
+        <HeaderContext.Provider
           value={{
-            show: this.state.show,
-            text: this.state.text,
-            open: this.open,
-            ok: this.state.clickOk,
-            cancel: this.clickCancel
+            type: this.state.headerType,
+            update: this.updateHeader
           }}
         >
+          <Modalcontext.Provider
+            value={{
+              show: this.state.show,
+              text: this.state.text,
+              open: this.open,
+              ok: this.state.clickOk,
+              cancel: this.clickCancel
+            }}
+          >
 
-          <Modal />
+            <Modal />
 
-          <Header updateModal={(show, type) => this.updateModal(show, type)} />
+            {/* <Header
+              updateModal={(show, type) => this.updateModal(show, type)}
+              type={this.state.headerType}
+            /> */}
 
-          <Switch>
-            <Route exact path='/' component={Home} />
-            <Route path='/signup' component={Signup} />
-            <Route path='/login' component={Login} setToken={(token) => this.setToken(token)} />
-            <Route path='/post/:id' component={PostSingle} />
-            <Route path='/post' component={Post} />
-            <Route path='/favorite' component={Favorite} />
-            <Route path='/profile/:id' component={Profile} />
-            <Route path='/myprofile' component={MyProfile} />
-            <Route path='/posts/:id' component={PagePosts} />
-          </Switch>
+            <Switch>
+              <Route exact path='/' component={Home} />
+              <Route path='/signup' component={Signup} />
+              <Route path='/login' component={Login} setToken={(token) => this.setToken(token)} />
+              <Route path='/post/:id' component={PostSingle} />
+              <Route path='/post' component={Post} />
+              <Route path='/favorite' component={Favorite} />
+              <Route path='/profile/:id' component={Profile} />
+              <Route path='/myprofile' component={MyProfile} />
+              <Route path='/posts/:id' component={PagePosts} />
+            </Switch>
 
-          <MenuBar />
+            <MenuBar />
 
-        </Modalcontext.Provider>
+          </Modalcontext.Provider>
+        </HeaderContext.Provider>
       </BrowserRouter>
     );
   }

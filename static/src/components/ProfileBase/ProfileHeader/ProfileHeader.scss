@@ -1,0 +1,9 @@
+@import '../../../style/var.scss';
+
+.ProfileHeader {
+  @include header;
+
+  @at-root {
+
+  }
+}
