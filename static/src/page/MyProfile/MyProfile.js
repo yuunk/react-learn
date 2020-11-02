@@ -1,15 +1,29 @@
-import React, { Component } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+
+// context
+import AuthContext from '../../context/AuthContext';
 
 // component
 import ProfileBase from '../../components/ProfileBase/ProfileBase';
 
-class MyProfile extends Component {
+const MyProfile = () => {
 
-  render() {
-    return (
-      <ProfileBase myprofile={true} />
-    );
-  }
+  const authContext = useContext(AuthContext);
+
+  const history = useHistory();
+
+  useEffect(() => {
+    if (!authContext.isLogin) {
+      history.push({
+        pathname: '/'
+      });
+    }
+  });
+
+  return (
+    <ProfileBase myprofile={true} />
+  );
 }
 
 export default MyProfile;

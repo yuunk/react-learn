@@ -15,7 +15,7 @@ class Favorite extends Component {
     return (
       <div className="Favorite">
         <h2 className="Favorite__pageTitle">お気に入り一覧</h2>
-        <Posts url="/api/favorite/post" />
+        <Posts url="/api/favorite/post" auth={true} />
       </div>
     );
   }

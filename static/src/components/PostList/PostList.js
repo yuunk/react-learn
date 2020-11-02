@@ -14,22 +14,42 @@ class Posts extends Component {
     posts: []
   }
 
-  fetchPosts = (url) => {
+  fetchPosts = (url, auth) => {
     
+    if (auth) {
+      
+      const token = localStorage.getItem('access_token');
 
-    axios.get(url).then(response => {
-      console.log(response);
-      this.setState({ posts: response.data });
-    }).catch(error => {
-      if (error.response.status === 401) {
-        this.props.history.push('/');
-      }
-    });
+      axios.get(url, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      }).then(response => {
+        console.log(response);
+        this.setState({ posts: response.data });
+      }).catch(error => {
+        if (error.response.status === 401) {
+          this.props.history.push('/');
+        }
+      });
+
+    } else {
+
+      axios.get(url).then(response => {
+        console.log(response);
+        this.setState({ posts: response.data });
+      }).catch(error => {
+        if (error.response.status === 401) {
+          this.props.history.push('/');
+        }
+      });
+
+    }
 
   }
 
   componentDidMount = () => {
-    this.fetchPosts(this.props.url);
+    this.fetchPosts(this.props.url, this.props.auth);
   }
 
   render() {
