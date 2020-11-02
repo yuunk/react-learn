@@ -1,6 +1,7 @@
 import React from 'react';
 
 const profileBaseContext = React.createContext({
+    userId: 0,
     record: {
         data: {
             userPosts: 0,

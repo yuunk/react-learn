@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 // context
-import ProfileBaseContext from '../../../context/ProfileBaseContext';
+import ProfileBaseContext from '../../../../context/ProfileBaseContext';
 
 // style
 import './ProfileRecord.scss';
@@ -14,18 +14,27 @@ class ProfileRecord extends Component {
   render() {
     return (
       <ul className="ProfileRecord">
-        <div className="ProfileRecord__item">
+        <Link
+          className="ProfileRecord__item"
+          to={'/posts/' + this.context.userId}
+        >
           <span className="ProfileRecord__number">{this.context.record.data.userPosts}</span>
           <span className="ProfileRecord__label">投稿</span>
-        </div>
-        <div className="ProfileRecord__item">
+        </Link>
+        <Link
+          className="ProfileRecord__item"
+          to="/"
+        >
           <span className="ProfileRecord__number">{this.context.record.data.follow}</span>
           <span className="ProfileRecord__label">フォロワー</span>
-        </div>
-        <div className="ProfileRecord__item">
+        </Link>
+        <Link
+          className="ProfileRecord__item"
+          to="/"
+        >
           <span className="ProfileRecord__number">{this.context.record.data.follower}</span>
           <span className="ProfileRecord__label">フォロー中</span>
-        </div>
+        </Link>
       </ul>
     );
   }

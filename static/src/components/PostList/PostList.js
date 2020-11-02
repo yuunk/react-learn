@@ -5,7 +5,7 @@ import axios from 'axios';
 import PostChild from './PostChild/PostChild';
 
 // style
-import './Posts.scss';
+import './PostList.scss';
 
 class Posts extends Component {
 
@@ -15,13 +15,9 @@ class Posts extends Component {
 
   fetchPosts = (url) => {
     
-    const token = localStorage.getItem('access_token');
+    // const token = localStorage.getItem('access_token');
 
-    axios.get(url, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      }
-    }).then(response => {
+    axios.get(url).then(response => {
       console.log(response);
       this.setState({ posts: response.data });
     }).catch(error => {
@@ -57,7 +53,7 @@ class Posts extends Component {
     }
 
     return (
-      <div className="Posts">
+      <div className="PostList">
         {posts}
       </div>
     );

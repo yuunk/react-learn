@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // components
-import Posts from '../../components/Posts/Posts';
+import Posts from '../../components/PostList/PostList';
 
 // style
 import './Favorite.scss';

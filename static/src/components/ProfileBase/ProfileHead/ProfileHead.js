@@ -1,7 +1,7 @@
 import React from 'react';
 
 // component
-import ProfileRecord from '../ProfileRecord/ProfileRecord';
+import ProfileRecord from './ProfileRecord/ProfileRecord';
 
 // style
 import './ProfileHead.scss';

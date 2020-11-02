@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import AuthContext from '../../context/AuthContext';
 
 // component
-import Posts from '../../components/Posts/Posts';
+import Posts from '../../components/PostList/PostList';
 
 // style
 import './Home.scss';

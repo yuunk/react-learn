@@ -17,6 +17,7 @@ import Post from '../page/Post/Post';
 import PostSingle from '../page/Post/PostSingle/PostSingle';
 import Favorite from '../page/Favorite/Favorite';
 import MyProfile from '../page/MyProfile/MyProfile';
+import PagePosts from '../page/Posts/PagePosts';
 import Profile from '../page/Profile/Profile';
 
 
@@ -76,6 +77,7 @@ class AppContainer extends Component {
             <Route path='/favorite' component={Favorite} />
             <Route path='/profile/:id' component={Profile} />
             <Route path='/myprofile' component={MyProfile} />
+            <Route path='/posts/:id' component={PagePosts} />
           </Switch>
 
           <MenuBar />

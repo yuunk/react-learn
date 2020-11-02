@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 // context
+import ProfileContext from '../../context/ProfileContext';
 import ProfileBaseContext from '../../context/ProfileBaseContext';
 
 // component
@@ -13,6 +14,8 @@ import ProfileAction from './ProfileAction/ProfileAction';
 import './ProfileBase.scss';
 
 class ProfileBase extends Component {
+
+  static contextType = ProfileContext;
 
   state = {
     editPanelClass: 'Profile__editPanel',
@@ -27,6 +30,7 @@ class ProfileBase extends Component {
       follow: 0,
       follower: 0,
     },
+    userId: null
   }
 
   fetchProfile = () => {
@@ -46,7 +50,8 @@ class ProfileBase extends Component {
       }
     }).then(response => {
       console.log(response);
-      this.updateProfile(response.data.name, response.data.text)
+      this.setState({ userId: response.data.userId });
+      this.updateProfile(response.data.profile.name, response.data.profile.text);
     }).catch(error => {
       console.log(error);
     });
@@ -110,6 +115,7 @@ class ProfileBase extends Component {
     return (
       <ProfileBaseContext.Provider
         value={{
+          userId: this.state.userId,
           record: {
             data: {
               userPosts: this.state.record.userPosts,
