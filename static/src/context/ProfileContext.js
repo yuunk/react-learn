@@ -1,7 +1,7 @@
 import React from 'react';
 
 const profileContext = React.createContext({
-    profileId: null,
+    profileId: 0,
 });
 
 export default profileContext;

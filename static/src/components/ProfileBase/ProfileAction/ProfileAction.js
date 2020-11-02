@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+// context
+import ProfileBaseContext from '../../../context/ProfileBaseContext';
+
 // component
 import ProfileFollowBtn from '../ProfileFollowBtn/ProfileFollowBtn';
 
@@ -8,6 +11,8 @@ import './ProfileAction.scss';
 
 class ProfileAction extends Component {
 
+  static contextType = ProfileBaseContext;
+
   state = {
     follow: false,
   }
@@ -15,6 +20,7 @@ class ProfileAction extends Component {
   updateFollow = (response) => {
     console.log(response);
     this.setState({ follow: response });
+    this.context.record.update();
   }
 
   render() {

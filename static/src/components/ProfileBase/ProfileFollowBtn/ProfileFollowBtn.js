@@ -26,7 +26,7 @@ class ProfileFollowBtn extends Component {
       }
     }).then(response => {
       this.props.updateFollow(response.data.follow);
-      console.log(response);
+      // func(this.context.record.data.follower + 1);
     }).catch(error => {
       console.log(error);
     });
