@@ -89,16 +89,6 @@ class ProfileBase extends Component {
     });
   }
 
-  updateRecord = (userPosts, follow, follower) => {
-    this.setState({
-      record: {
-        userPosts: userPosts,
-        follow: follow,
-        follower: follower
-      }
-    });
-  }
-
   myprofileContent = () => {
     return (
       <React.Fragment>
@@ -128,8 +118,6 @@ class ProfileBase extends Component {
             },
             update: this.fetchRecord
           },
-          update: this.updateRecord,
-
         }}
       >
         <div className="ProfileBase">

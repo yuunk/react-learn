@@ -11,26 +11,6 @@ class ProfileRecord extends Component {
 
   static contextType = ProfileBaseContext;
 
-  // fetchData = () => {
-  //   console.log(this.context.profileId);
-  //   const token = localStorage.getItem('access_token');
-
-  //   axios.get('/api/profile/record/' + this.context.profileId , {
-  //     headers: {
-  //       Authorization: `Bearer ${token}`,
-  //     }
-  //   }).then(response => {
-  //     console.log(response);
-  //     this.context.update(response.data.userPosts, response.data.follow, response.data.follower);
-  //   }).catch(error => {
-  //     console.log(error);
-  //   });
-  // }
-
-  // componentDidMount = () => {
-  //   this.fetchData();
-  // }
-
   render() {
     return (
       <ul className="ProfileRecord">

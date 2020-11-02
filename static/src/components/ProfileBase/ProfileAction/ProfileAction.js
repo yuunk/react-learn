@@ -24,13 +24,11 @@ class ProfileAction extends Component {
   }
 
   render() {
-    // console.log(this.props.match.params.id);
     return (
       <div className="ProfileAction">
         <ProfileFollowBtn
           className="ProfileAction__btn"
           follow={this.state.follow}
-          // profileUserId={this.props.match.params.id}
           updateFollow={(response) => { this.updateFollow(response) }}
         />
         <button className="ProfileAction__btn">メッセージ</button>
