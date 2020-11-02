@@ -17,7 +17,8 @@ class ProfileBase extends Component {
     profile: {
       name: '',
       introduction: '',
-    }
+    },
+    isMypage: false,
   }
 
   fetchProfile = () => {
@@ -63,6 +64,26 @@ class ProfileBase extends Component {
       </React.Fragment>
     );
   }
+
+  // renderProfileAction = () => {
+  //   const token = localStorage.getItem('access_token');
+
+  //   axios.get('/api/profile/checkMine/' + this.props.userId, {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     }
+  //   }).then(response => {
+  //     console.log(response);
+  //     if (response.data) {
+
+  //     } else {
+  //       return <ProfileAction />
+  //     }
+  //   }).catch(error => {
+  //     console.log(error);
+  //   });
+
+  // }
 
   componentDidMount = () => {
     this.fetchProfile();

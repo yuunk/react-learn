@@ -7,16 +7,18 @@ import ProfileContext from '../../../context/ProfileContext';
 
 class ProfileFollowBtn extends Component {
 
-  updateFollow = (profileId) => {
+  static contextType = ProfileContext;
+
+  updateFollow = (api) => {
     const token = localStorage.getItem('access_token');
 
     if (token === null) {
       // modalを出してログインを促す
     }
 
-    const profileUserId = profileId;
-    // console.log(props.location.search);
-    axios.post('/api/follower/update', {
+    const profileUserId = this.context.profileId;
+
+    axios.post(api, {
       profileUserId: profileUserId
     }, {
       headers: {
@@ -30,22 +32,18 @@ class ProfileFollowBtn extends Component {
     });
   }
 
+  componentDidMount = () => {
+    this.updateFollow('/api/follower/fetch');
+  }
+
   render() {
     return (
-      <ProfileContext.Consumer>
-        {
-          (context) => {
-            return (
-              <button
-                className={this.props.className}
-                onClick={() => { this.updateFollow(context.profileId) }}
-              >
-                {this.props.follow ? 'フォロー中' : 'フォロー'}
-              </button>
-            );
-          }
-        }
-      </ProfileContext.Consumer>
+      <button
+        className={this.props.className}
+        onClick={() => { this.updateFollow('/api/follower/update') }}
+      >
+        {this.props.follow ? 'フォロー中' : 'フォロー'}
+      </button>
     );
   }
   

@@ -20,28 +20,43 @@ class PostSingle extends Component {
       updated_at: ''
     },
     fetchDone: false,
-    id: 0
+    id: 0,
+    profileUrl: ''
   }
 
   fetchPost = () => {
 
     const requestApi = '/api/post/' + this.props.match.params.id;
     this.setState({ id: this.props.match.params.id });
+    const token = localStorage.getItem('access_token');
 
-    axios.get(requestApi)
-      .then(response => {
+    axios.get(requestApi, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    }).then(response => {
         console.log(response);
-        const post = response.data;
+        const post = response.data.post;
+        let profileUrl = '';
+
+        if (response.data.isMine) {
+          profileUrl = '/myprofile';
+        } else {
+          profileUrl = '/profile/' + post.id;
+        }
+
         this.setState({
           post: {
             userId: post.id,
             userName: post.name,
             title: post.title,
             text: post.text,
-            updated_at: post.updated_at.substr(0, 10)
-          }
+            updated_at: post.updated_at.substr(0, 10),
+          },
+          fetchDone: true,
+          profileUrl: profileUrl
         });
-        this.setState({ fetchDone: true });
+        
       }).catch(error => {
         console.log(error);
       });
@@ -56,7 +71,7 @@ class PostSingle extends Component {
       <React.Fragment>
         <h2 className="PostSingle__title">{this.state.post.title}</h2>
         <p className="PostSingle__text">{this.state.post.text}</p>
-        <Link to={'/profile/' + this.state.post.userId}
+        <Link to={this.state.profileUrl}
           className="PostSingle__user"
         >
           {this.state.post.userName}@{this.state.post.updated_at}
