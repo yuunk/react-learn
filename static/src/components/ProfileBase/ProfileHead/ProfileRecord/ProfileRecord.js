@@ -53,7 +53,7 @@ class ProfileRecord extends Component {
             className="ProfileRecord__item"
             onClick={() => { this.activeFollowPanel(true) }}
           >
-            <span className="ProfileRecord__number">{this.context.record.data.follow}</span>
+            <span className="ProfileRecord__number">{this.context.record.data.follower}</span>
             <span className="ProfileRecord__label">フォロワー</span>
           </div>
 
@@ -61,7 +61,7 @@ class ProfileRecord extends Component {
             className="ProfileRecord__item"
             onClick={() => { this.activeFollowPanel(false) }}
           >
-            <span className="ProfileRecord__number">{this.context.record.data.follower}</span>
+            <span className="ProfileRecord__number">{this.context.record.data.follow}</span>
             <span className="ProfileRecord__label">フォロー中</span>
           </div>
 

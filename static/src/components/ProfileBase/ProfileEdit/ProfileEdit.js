@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // component
-import ProfileEditForm from '../ProfileEditForm/ProfileEditForm';
+import ProfileEditForm from './ProfileEditForm/ProfileEditForm';
 
 // style
 import './ProfileEdit.scss';

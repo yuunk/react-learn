@@ -22,16 +22,18 @@ class ProfileBase extends Component {
     isMounted: false,
     editPanelClass: 'Profile__editPanel',
     editPanel: false,
-    profile: {
-      name: '',
-      introduction: '',
+    data: {
+      profile: {
+        name: '',
+        introduction: '',
+      },
+      record: {
+        userPosts: 0,
+        follow: 0,
+        follower: 0,
+      },
     },
     isMypage: false,
-    record: {
-      userPosts: 0,
-      follow: 0,
-      follower: 0,
-    },
     userId: null,
     header: {
       active: false,
@@ -40,18 +42,14 @@ class ProfileBase extends Component {
   }
 
   initData = () => {
-    
-  }
-
-  fetchProfile = () => {
     const token = localStorage.getItem('access_token');
 
     let api = '';
 
     if (this.props.userId) {
-      api = '/api/profile/fetch/' + this.props.userId;
+      api = '/api/profile/init/' + this.props.userId;
     } else {
-      api = '/api/profile/fetch';
+      api = '/api/profile/init';
     }
 
     axios.get(api, {
@@ -60,10 +58,24 @@ class ProfileBase extends Component {
       }
     }).then(response => {
       if (this.state.isMounted) {
-        this.setState({ userId: response.data.userId });
-        this.updateProfile(response.data.profile.name, response.data.profile.text);
+        console.log(response.data);
+
+        this.setState({
+          userId: response.data.userId,
+          data: {
+            profile: {
+              name: response.data.profile.name,
+              introduction: response.data.profile.text
+            },
+            record: {
+              userPosts: response.data.record.userPosts,
+              follow: response.data.record.follow,
+              follower: response.data.record.follower
+            }
+          }
+        });
+        
       }
-      console.log(response);
     }).catch(error => {
       console.log(error);
     });
@@ -86,13 +98,11 @@ class ProfileBase extends Component {
     }).then(response => {
       console.log(response.data);
       if (this.state.isMounted) {
-        this.setState({
-          record: {
-            userPosts: response.data.userPosts,
-            follow: response.data.follow,
-            follower: response.data.follower
-          }
-        });
+        this.updateRecord(
+          response.data.userPosts,
+          response.data.follow,
+          response.data.follower
+        );
       }
     }).catch(error => {
       console.log(error);
@@ -100,12 +110,20 @@ class ProfileBase extends Component {
   }
 
   updateProfile = (name, introduction) => {
-    this.setState({
-      profile: {
-        name: name,
-        introduction: introduction
-      }
-    });
+    let data = { ...this.state.data };
+    data.profile.name = name;
+    data.profile.introduction = introduction;
+    this.setState({ data: data });
+  }
+
+  // update state
+  updateRecord = (userPosts, follow, follower) => {
+    let data = { ...this.state.data };
+    data.record.userPosts = userPosts;
+    data.record.follow = follow;
+    data.record.follower = follower;
+
+    this.setState({ data: data });
   }
 
   updateHeader = (type, isActive) => {
@@ -121,8 +139,8 @@ class ProfileBase extends Component {
     return (
       <React.Fragment>
         <ProfileEdit
-          name={this.state.profile.name}
-          introduction={this.state.profile.introduction}
+          name={this.state.data.profile.name}
+          introduction={this.state.data.profile.introduction}
           updateProfile={(name, introduction) => { this.updateProfile(name, introduction) }}
         />
       </React.Fragment>
@@ -131,8 +149,7 @@ class ProfileBase extends Component {
 
   componentDidMount() {
     this.setState({ isMounted: true });
-    this.fetchProfile();
-    this.fetchRecord();
+    this.initData();
   }
 
   componentWillUnmount() {
@@ -146,9 +163,9 @@ class ProfileBase extends Component {
           userId: this.state.userId,
           record: {
             data: {
-              userPosts: this.state.record.userPosts,
-              follow: this.state.record.follow,
-              follower: this.state.record.follower
+              userPosts: this.state.data.record.userPosts,
+              follow: this.state.data.record.follow,
+              follower: this.state.data.record.follower
             },
             update: this.fetchRecord
           },
@@ -165,8 +182,8 @@ class ProfileBase extends Component {
           />
           <div className="ProfileBase__inner">
             <ProfileHead />
-            <p className="Profile__profile">{this.state.profile.name}</p>
-            <p className="Profile__profile">{this.state.profile.introduction}</p>
+            <p className="Profile__profile">{this.state.data.profile.name}</p>
+            <p className="Profile__profile">{this.state.data.profile.introduction}</p>
             {this.props.myprofile ? this.myprofileContent() : null}
             {this.props.myprofile ? null : <ProfileAction />}
           </div>

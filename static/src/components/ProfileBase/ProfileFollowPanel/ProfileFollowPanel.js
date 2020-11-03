@@ -41,10 +41,10 @@ class ProfileFollowPanel extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    console.log('nextporsp: ' + nextProps.active + 'this props: ' + this.props.active);
     if (nextProps.active === this.props.active) {
       return false;
     }
+    console.log('panel update');
     return true;
   }
 
