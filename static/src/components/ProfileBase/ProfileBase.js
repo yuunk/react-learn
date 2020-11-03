@@ -19,6 +19,7 @@ class ProfileBase extends Component {
   static contextType = ProfileContext;
 
   state = {
+    isMounted: false,
     editPanelClass: 'Profile__editPanel',
     editPanel: false,
     profile: {
@@ -38,6 +39,10 @@ class ProfileBase extends Component {
     }
   }
 
+  initData = () => {
+    
+  }
+
   fetchProfile = () => {
     const token = localStorage.getItem('access_token');
 
@@ -54,9 +59,11 @@ class ProfileBase extends Component {
         Authorization: `Bearer ${token}`,
       }
     }).then(response => {
+      if (this.state.isMounted) {
+        this.setState({ userId: response.data.userId });
+        this.updateProfile(response.data.profile.name, response.data.profile.text);
+      }
       console.log(response);
-      this.setState({ userId: response.data.userId });
-      this.updateProfile(response.data.profile.name, response.data.profile.text);
     }).catch(error => {
       console.log(error);
     });
@@ -78,13 +85,15 @@ class ProfileBase extends Component {
       }
     }).then(response => {
       console.log(response.data);
-      this.setState({
-        record: {
-          userPosts: response.data.userPosts,
-          follow: response.data.follow,
-          follower: response.data.follower
-        }
-      });
+      if (this.state.isMounted) {
+        this.setState({
+          record: {
+            userPosts: response.data.userPosts,
+            follow: response.data.follow,
+            follower: response.data.follower
+          }
+        });
+      }
     }).catch(error => {
       console.log(error);
     });
@@ -120,9 +129,14 @@ class ProfileBase extends Component {
     );
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
+    this.setState({ isMounted: true });
     this.fetchProfile();
     this.fetchRecord();
+  }
+
+  componentWillUnmount() {
+    this.setState({ isMounted: false });
   }
 
   render() {
