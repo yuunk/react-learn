@@ -14,6 +14,12 @@ const profileBaseContext = React.createContext({
         active: false,
         type: '',
         update: () => {}
+    },
+    followPanel: {
+        data: {
+            followerUsers: {},
+            followUsers: {}
+        }
     }
 });
 

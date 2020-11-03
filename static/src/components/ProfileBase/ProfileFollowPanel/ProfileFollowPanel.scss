@@ -32,5 +32,13 @@
         border-bottom: 1px solid #fff;
       }
     }
+
+    .ProfileFollowPanel__data {
+      display: none;
+
+      &.-active {
+        display: block;
+      }
+    }
   }
 }

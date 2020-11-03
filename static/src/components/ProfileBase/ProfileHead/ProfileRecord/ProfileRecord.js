@@ -28,6 +28,14 @@ class ProfileRecord extends Component {
     this.context.header.update('followPanel', true);
   }
 
+  toggleActiveDefaultTab = () => {
+    if (this.state.activeDefaultTab) {
+      this.setState({ activeDefaultTab: false });
+    } else {
+      this.setState({ activeDefaultTab: true });
+    }
+  }
+
   componentDidMount = () => {
     if (this.context.header.active) {
 
@@ -70,6 +78,7 @@ class ProfileRecord extends Component {
         <ProfileFollowPanel
           active={this.context.header.active}
           activeDefaultTab={this.state.activeDefaultTab}
+          toggleActiveDefaultTab={() => {this.toggleActiveDefaultTab()}}
         />
 
       </React.Fragment>

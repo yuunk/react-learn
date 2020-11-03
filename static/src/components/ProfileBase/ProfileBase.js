@@ -32,6 +32,10 @@ class ProfileBase extends Component {
         follow: 0,
         follower: 0,
       },
+      followPanel: {
+        followUsers: {},
+        followerUsers: {},
+      }
     },
     isMypage: false,
     userId: null,
@@ -71,6 +75,10 @@ class ProfileBase extends Component {
               userPosts: response.data.record.userPosts,
               follow: response.data.record.follow,
               follower: response.data.record.follower
+            },
+            followPanel: {
+              followerUsers: response.data.followPanel.followerUsers,
+              followUsers: response.data.followPanel.followUsers
             }
           }
         });
@@ -173,6 +181,12 @@ class ProfileBase extends Component {
             active: this.state.header.active,
             type: this.state.header.type,
             update: this.updateHeader
+          },
+          followPanel: {
+            data: {
+              followerUsers: this.state.data.followPanel.followerUsers,
+              followUsers: this.state.data.followPanel.followUsers
+            }
           }
         }}
       >

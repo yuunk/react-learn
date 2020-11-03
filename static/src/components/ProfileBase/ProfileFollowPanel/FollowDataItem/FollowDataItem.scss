@@ -1,0 +1,17 @@
+.FollowDataItem {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+
+  @at-root {
+    .FollowDataItem__name {
+      width: 70%;
+    }
+
+    .FollowDataItem__btn {
+      padding: 5px;
+      border: 1px solid #fff;
+      color: #fff;
+    }
+  }
+}
