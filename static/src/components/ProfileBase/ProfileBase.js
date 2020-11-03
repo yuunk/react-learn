@@ -37,6 +37,9 @@ class ProfileBase extends Component {
         followerUsers: {},
       }
     },
+    action: {
+      updateFollow: false,
+    },
     isMypage: false,
     userId: null,
     header: {
@@ -143,6 +146,14 @@ class ProfileBase extends Component {
     });
   }
 
+  updateFollow = (isUpdate) => {
+    this.setState({
+      action: {
+        updateFollow: isUpdate
+      }
+    });
+  }
+
   myprofileContent = () => {
     return (
       <React.Fragment>
@@ -156,8 +167,9 @@ class ProfileBase extends Component {
   }
 
   componentDidMount() {
-    this.setState({ isMounted: true });
-    this.initData();
+    this.setState({ isMounted: true }, () => {
+      this.initData();
+    });
   }
 
   componentWillUnmount() {

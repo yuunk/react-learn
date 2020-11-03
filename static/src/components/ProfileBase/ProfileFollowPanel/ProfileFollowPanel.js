@@ -82,6 +82,7 @@ class ProfileFollowPanel extends Component {
                       <FollowDataItem
                         key={index}
                         userName={user.name}
+                        userId={user.id}
                       />
                     ))}
                   </ul>
@@ -90,6 +91,7 @@ class ProfileFollowPanel extends Component {
                       <FollowDataItem
                         key={index}
                         userName={user.name}
+                        userId={user.id}
                       />
                     ))}
                   </ul>

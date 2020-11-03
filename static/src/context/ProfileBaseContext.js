@@ -20,6 +20,9 @@ const profileBaseContext = React.createContext({
             followerUsers: {},
             followUsers: {}
         }
+    },
+    action: {
+        updateFollow: false,
     }
 });
 
