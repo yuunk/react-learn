@@ -1,11 +1,9 @@
 import React, { useContext } from 'react';
 import axios from 'axios';
-import { useHistory } from "react-router";
 
 // context
 import AuthContext from '../../context/AuthContext';
-
-// import 
+import ModalContext from '../../context/ModalContext';
 
 // style
 import './HomeHeader.scss';
@@ -14,11 +12,19 @@ const HomeHeader = () => {
 
   const authContext = useContext(AuthContext);
 
-  const history = useHistory();
-
   const updateUserBtn = () => {
     if (authContext.isLogin) {
-      return <button onClick={logout}>logout</button>
+      return (
+        <ModalContext.Consumer>
+          {
+            (context) =>
+              <button
+                onClick={(text, func) => context.open('ログアウトしますか？', logout)}
+              >logout
+              </button>
+          }
+        </ModalContext.Consumer>
+      );
     }
   }
 
@@ -32,14 +38,6 @@ const HomeHeader = () => {
         }
       })
         .then(response => {
-          console.log(response);
-          // if (response.status === 200) {
-          //   // this.props.history.push('/');
-          //   history.push({
-          //     pathname: '/'
-          //   });
-          //   // this.context.logout();
-          // }
           authContext.logout();
         })
         .catch(error => {

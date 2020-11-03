@@ -22,7 +22,7 @@ const MyProfile = () => {
         pathname: '/'
       });
     }
-  }, []);
+  });
 
   return (
     <ProfileBase myprofile={true} />
