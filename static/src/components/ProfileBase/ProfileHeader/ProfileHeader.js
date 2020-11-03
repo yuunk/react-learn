@@ -18,8 +18,10 @@ const ProfileHeader = (props) => {
     switch (props.type) {
       case 'followPanel':
         content = followPanel();
+        console.log('update panel');
         break;
       default:
+        console.log('panel');
         break;
     }
 

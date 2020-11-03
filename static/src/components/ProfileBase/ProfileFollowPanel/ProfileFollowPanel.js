@@ -16,11 +16,9 @@ class ProfileFollowPanel extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    console.log(props.active);
     let panelClass;
-    let hoge;
-    if (props.active) {
-
+    let active = props.active;
+    if (active) {
       panelClass = 'ProfileFollowPanel -active';
     } else {
       panelClass = 'ProfileFollowPanel';
@@ -40,6 +38,14 @@ class ProfileFollowPanel extends Component {
       }
     }
 
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('nextporsp: ' + nextProps.active + 'this props: ' + this.props.active);
+    if (nextProps.active === this.props.active) {
+      return false;
+    }
+    return true;
   }
 
   render() {
