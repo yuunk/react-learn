@@ -1,10 +1,7 @@
 import axios from 'axios';
 import React, { Component, useContext } from 'react';
-import { withRouter } from 'react-router-dom';
-import { useHistory } from "react-router";
 
 // context
-import AuthContext from '../../context/AuthContext';
 import ModalContext from '../../context/ModalContext';
 import HeaderContext from '../../context/HeaderContext';
 // import 
@@ -18,36 +15,7 @@ import { ReactComponent as IconCamera } from '../../assets/img/icon/camera.svg';
 
 const Header = (props) => {
 
-  const history = useHistory();
-
   const headerContext = useContext(HeaderContext);
-
-  const logout = () => {
-    const token = localStorage.getItem('access_token');
-
-    if (token !== null) {
-      axios.get('/api/auth/logout', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        }
-      })
-        .then(response => {
-          if (response.status === 200 && response.data) {
-            // this.props.history.push('/');
-            history.push({
-              pathname: '/'
-            });
-            // this.context.logout();
-          }
-        })
-        .catch(error => {
-          console.log(error);
-          this.props.history.push('/');
-        });
-    } else {
-      this.props.history.push('/');
-    }
-  }
 
   const updateBtns = (element) => {
 

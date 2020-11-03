@@ -15,6 +15,7 @@ class App extends Component {
 
   state = {
     isLogin: false,
+    mounted: false,
   }
 
   login = () => {
@@ -52,6 +53,7 @@ class App extends Component {
 
   componentDidMount = () => { 
     this.authUser();
+    this.setState({ mounted: true });
   }
 
 
@@ -64,7 +66,8 @@ class App extends Component {
           value={{
             isLogin: this.state.isLogin,
             login: this.login,
-            logout: this.logout
+            logout: this.logout,
+            mounted: this.state.mounted
           }}
         >
           <AppContainer />
